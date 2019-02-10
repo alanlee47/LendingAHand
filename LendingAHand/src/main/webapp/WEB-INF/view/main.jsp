@@ -30,6 +30,7 @@
                         <div class='middle-panel'>
                             <label id="greetings"></label>
                         </div>
+                        <button onClick="myFunc()">send message</button>
                         <div class='bottom-panel'></div>
                     </div>
                     </div><label for="Hello"></label>
@@ -59,27 +60,8 @@
         var usersName = "Lucas";
         usersName = "Hello"+ " " + usersName + ",";
         document.getElementById("greetings").innerHTML = usersName;
-         function posts() {
-               $.ajax
-                   ({
-                       type: "GET",
-                       url:'/LendingAHand/test',
-                       success: function(data){
-                       if(data){  //if new_posts.php echo something.
-                           //do task here
-                           console.log(data);
-                           console.log("WEEEE");
-                       }else{
-
-                           console.log("no");
-                           posts();
-                       }
-                   },
-                   error: function(){
-                        post();
-                       console.log("erro");
-                   }
-               });
+         function myFunc() {
+              location.href = "/LendingAHand/twilio";
            }
        posts()
     </script>

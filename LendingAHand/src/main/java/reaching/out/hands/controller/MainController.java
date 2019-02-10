@@ -1,5 +1,7 @@
 package reaching.out.hands.controller;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,8 @@ public class MainController {
 
     // == fields ==
     private final MainService mainService;
+    public static final String ACCOUNT_SID = "AC5600f7f6db40093f68e67b07e095cdc7";
+    public static final String AUTH_TOKEN = "7536b21a808afbd53056f6f9f920c0e1";
 
     // == constructors ==
     @Autowired
@@ -69,6 +73,32 @@ public class MainController {
         catch (Exception e)
         {
 
+        }
+        return new ResponseEntity<>(temp, HttpStatus.OK);
+    }
+
+    private boolean sendMessage(String phone){
+
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber(phone),
+                new com.twilio.type.PhoneNumber("+14052661697"),
+                "Please type 'YES' to confirm")
+                .create();
+
+        System.out.println(message.getSid());
+        return true;
+    }
+
+    @GetMapping("/twilio")
+    ResponseEntity<String> twilio() {
+        String temp = "";
+        try{
+            sendMessage("+14058081135");
+        }
+        catch (Exception e)
+        {
+            temp = "error";
         }
         return new ResponseEntity<>(temp, HttpStatus.OK);
     }
