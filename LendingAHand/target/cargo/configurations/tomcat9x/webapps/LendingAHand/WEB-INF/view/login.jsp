@@ -4,8 +4,8 @@
     <head>
         <link rel="stylesheet" href="/Applications/Documents/LendingAHand/src/main/webapp/resources/theme1/css/login.css">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+
     </head>
-    <script></script>
     <body>
         <div class="test">
         <div id='background-image'>
@@ -24,23 +24,24 @@
                                 <label>Username</label>
                             </div>
                             <div class='username'>
-                                <input type="text" class='form-control' placeholder="Username"></input >
+                                <input id="username" type="text" class='form-control' placeholder="Username"></input >
                             </div>
                             <div class='password-label'>
                                 <label>Password</label>
                             </div>
                             <div class="password">
-                                <input type="password" class='form-control' placeholder="Password"></input >
+                                <input id="password" type="password" class='form-control' placeholder="Password"></input >
                             </div>
                             <div class='rememberme-label'>
                                 <label>Remember me</label>
                                 <input type="checkbox" class='form-control'></input >
                             </div>
+                            <c:url var="itemlink" value ="hello"/>
                             <div class="submit">
-                                <button type="button" class="btn btn-default">Submit</button>
+                                <button type="button" class="btn btn-default" onClick="loginPage()">Submit</button>
                             </div>
                             <div class="forgot-password">
-                                <a href="">Forgot Password</a>
+                                <a href="/LendingAHand/createAccount">Create Account</a>
                             </div>
                         </div>
                         </div>
@@ -51,6 +52,14 @@
         </div>
     </div>
     </body>
+       <script>
+            function loginPage() {
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                location.href = "/LendingAHand/accounts?user="+username+"&pass="+password;
+           }
+
+       </script>
     <style>
     html{
         height: 100%;
